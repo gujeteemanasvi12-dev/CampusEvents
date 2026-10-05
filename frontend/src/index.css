@@ -1,0 +1,250 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f7f5;
+  color: #171717;
+}
+
+nav {
+  height: 75px;
+  padding: 0 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f7f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.logo span {
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.hero {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  padding: 70px 10%;
+  background: #202a25;
+  color: white;
+}
+
+.hero-content {
+  max-width: 750px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.hero h1 {
+  font-size: clamp(45px, 6vw, 78px);
+  line-height: 0.98;
+  letter-spacing: -3px;
+  margin-bottom: 25px;
+}
+
+.hero-text {
+  max-width: 520px;
+  color: #d3d8d5;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 14px 22px;
+  background: white;
+  color: #202a25;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.events-section {
+  padding: 90px 8%;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 40px;
+}
+
+.section-heading h2,
+.register-info h2 {
+  font-size: 45px;
+  letter-spacing: -2px;
+}
+
+.section-heading > p {
+  max-width: 300px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.event-card {
+  background: white;
+  padding: 30px;
+  min-height: 330px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-number {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 50px;
+}
+
+.event-card h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.event-description {
+  color: #666;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 20px 0;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.event-card button {
+  border: none;
+  background: #202a25;
+  color: white;
+  padding: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.register-section {
+  padding: 80px 10%;
+  background: #e9e8e2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.register-info h2 {
+  margin-bottom: 20px;
+}
+
+.register-info > p:last-child {
+  max-width: 400px;
+  color: #666;
+  line-height: 1.7;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register-form label {
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.register-form input,
+.register-form select {
+  padding: 14px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 14px;
+}
+
+.register-form button {
+  margin-top: 15px;
+  padding: 15px;
+  border: none;
+  background: #202a25;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.success-message {
+  padding: 14px;
+  background: #dcebdd;
+  color: #24532b;
+  line-height: 1.5;
+}
+
+footer {
+  padding: 30px 8%;
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 13px;
+}
+
+footer strong {
+  color: #171717;
+}
+
+@media (max-width: 800px) {
+  .event-grid,
+  .register-section {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading > p {
+    margin-top: 15px;
+  }
+
+  .hero h1 {
+    font-size: 50px;
+  }
+}
