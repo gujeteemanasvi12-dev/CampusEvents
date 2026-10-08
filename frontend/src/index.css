@@ -248,3 +248,62 @@ footer strong {
     font-size: 50px;
   }
 }
+/* Registered Students Section */
+
+.registrations-section {
+  padding: 90px 8%;
+  background: #f7f7f5;
+}
+
+.no-registrations {
+  padding: 30px;
+  background: white;
+  border: 1px solid #e2e2e2;
+  color: #666;
+  text-align: center;
+}
+
+.registrations-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border: 1px solid #e2e2e2;
+}
+
+.registrations-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.registrations-table th {
+  background: #202a25;
+  color: white;
+  text-align: left;
+  padding: 16px 20px;
+  font-size: 13px;
+}
+
+.registrations-table td {
+  padding: 17px 20px;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 14px;
+}
+
+.registrations-table tbody tr:hover {
+  background: #f4f4f1;
+}
+
+.registrations-table td:first-child {
+  font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  .registrations-section {
+    padding: 60px 6%;
+  }
+
+  .registrations-table {
+    min-width: 550px;
+  }
+}
