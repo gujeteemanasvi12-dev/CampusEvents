@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [form, setForm] = useState({
@@ -8,6 +8,7 @@ function App() {
   });
 
   const [message, setMessage] = useState("");
+  const [registrations, setRegistrations] = useState([]);
 
   const events = [
     {
@@ -32,6 +33,25 @@ function App() {
         "Celebrate creativity, music, art and culture with the college community.",
     },
   ];
+
+  const fetchRegistrations = async () => {
+    try {
+      const response = await fetch(
+        "https://campusevents-sz8q.onrender.com/api/registrations"
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setRegistrations(data);
+      }
+    } catch (error) {
+      console.error("Unable to fetch registrations:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRegistrations();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +80,9 @@ function App() {
           email: "",
           event: "Tech Innovators Meetup",
         });
+
+        // Refresh the registration list
+        fetchRegistrations();
       } else {
         setMessage(data.message);
       }
@@ -73,11 +96,14 @@ function App() {
   return (
     <div>
       <nav>
-        <div className="logo">Campus<span>Events</span></div>
+        <div className="logo">
+          Campus<span>Events</span>
+        </div>
 
         <div className="nav-links">
           <a href="#events">Events</a>
           <a href="#register">Register</a>
+          <a href="#registrations">Registrations</a>
         </div>
       </nav>
 
@@ -160,7 +186,10 @@ function App() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="register-form">
+        <form
+          onSubmit={handleSubmit}
+          className="register-form"
+        >
           <label>Full Name</label>
 
           <input
@@ -219,6 +248,60 @@ function App() {
             </div>
           )}
         </form>
+      </section>
+
+      {/* Registrations Section */}
+      <section
+        id="registrations"
+        className="registrations-section"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">REGISTERED</p>
+            <h2>Registered Students</h2>
+          </div>
+
+          <p>
+            Students who have registered for upcoming
+            campus events.
+          </p>
+        </div>
+
+        {registrations.length === 0 ? (
+          <div className="no-registrations">
+            No registrations yet.
+          </div>
+        ) : (
+          <div className="registrations-table-wrapper">
+            <table className="registrations-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Event</th>
+                  <th>Registered On</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {registrations.map((registration) => (
+                  <tr key={registration._id}>
+                    <td>{registration.name}</td>
+                    <td>{registration.event}</td>
+                    <td>
+                      {new Date(
+                        registration.registeredAt
+                      ).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <footer>
