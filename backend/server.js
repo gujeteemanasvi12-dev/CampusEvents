@@ -39,6 +39,24 @@ app.get("/", (req, res) => {
   res.send("CampusEvents API is running");
 });
 
+// Get all registrations
+app.get("/api/registrations", async (req, res) => {
+  try {
+    const registrations = await Registration.find()
+      .sort({ registeredAt: -1 })
+      .select("name event registeredAt");
+
+    res.json(registrations);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Unable to fetch registrations.",
+    });
+  }
+});
+
+// Register for an event
 app.post("/api/register", async (req, res) => {
   try {
     const { name, email, event } = req.body;
@@ -75,10 +93,8 @@ mongoose
   .then(() => {
     console.log("MongoDB connected");
 
-    app.listen(process.env.PORT, () => {
-      console.log(
-        `Server running on http://localhost:${process.env.PORT}`
-      );
+    app.listen(process.env.PORT || 5000, "0.0.0.0", () => {
+      console.log("CampusEvents server is running");
     });
   })
   .catch((error) => {
